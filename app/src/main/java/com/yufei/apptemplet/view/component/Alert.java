@@ -1,4 +1,4 @@
-package com.yufei.apptemplet.utils;
+package com.yufei.apptemplet.view.component;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -14,24 +14,19 @@ import com.yufei.apptemplet.R;
 /**
  * Created by wangyufei on 16/9/5.
  */
-public class AlertUtil {
-
-    private AlertDialog alertDialog;
+public class Alert {
 
     private View view;
 
-    private AlertUtil(Context context) {
+    private AlertDialog alertDialog;
+
+    public Alert(Context context) {
 
         view = LayoutInflater.from(context).inflate(R.layout.component_alert, null);
 
         alertDialog = new AlertDialog.Builder(context).create();
         alertDialog.setCancelable(false);
         alertDialog.setInverseBackgroundForced(true);
-    }
-
-    public static AlertUtil createAlert(Context context) {
-
-        return new AlertUtil(context);
     }
 
     public void show() {
