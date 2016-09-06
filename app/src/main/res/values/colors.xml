@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--defaults-->
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--component alert-->
+    <color name="alert_bg">#fafafa</color>
+    <color name="alert_msg">#000000</color>
+    <color name="alert_btn">#0099dd</color>
+    <color name="alert_line">#dddddd</color>
+
 </resources>
