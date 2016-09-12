@@ -27,10 +27,10 @@ public class AppUtil {
     }
 
     /**
-     * 获取应用程序名称
+     * get app name
      *
      * @param context
-     * @return
+     * @return app name
      */
     public static String getAppName(Context context) {
 
@@ -50,10 +50,10 @@ public class AppUtil {
     }
 
     /**
-     * 获取应用程序版本名称信息
+     * get app version name
      *
      * @param context
-     * @return 当前应用的版本名称
+     * @return version name
      */
     public static String getVersionName(Context context) {
 
@@ -73,10 +73,10 @@ public class AppUtil {
     }
 
     /**
-     * 获取应用程序的版本Code信息
+     * get app version code
      *
      * @param context
-     * @return 版本code
+     * @return version code
      */
     public static int getVersionCode(Context context) {
 
@@ -96,10 +96,10 @@ public class AppUtil {
     }
 
     /**
-     * 获取设备屏幕密度
+     * get dpr
      *
      * @param context
-     * @return 当前设备屏幕密度
+     * @return dpr
      */
     public static float getDpr(Context context) {
 
@@ -107,7 +107,29 @@ public class AppUtil {
     }
 
     /**
-     * 获取device_id和mac地址
+     * get the width of screen
+     *
+     * @param context
+     * @return screenWidth
+     */
+    public static int getScreenWidth(Context context) {
+
+        return context.getResources().getDisplayMetrics().widthPixels;
+    }
+
+    /**
+     * get the height of screen
+     *
+     * @param context
+     * @return screenHeight
+     */
+    public static int getScreenHeight(Context context) {
+
+        return context.getResources().getDisplayMetrics().heightPixels;
+    }
+
+    /**
+     * get device_id and mac
      *
      * @param context
      * @return {"mac":"","device_id":""}
@@ -193,7 +215,7 @@ public class AppUtil {
     }
 
     /**
-     * 查看app 权限
+     * check permission
      *
      * @param context permission
      * @return boolean

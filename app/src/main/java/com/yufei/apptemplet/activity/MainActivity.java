@@ -7,8 +7,6 @@ import com.yufei.apptemplet.view.component.Alert;
 
 public class MainActivity extends BaseActivity {
 
-    private Alert alert;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
