@@ -47,6 +47,50 @@ public class ActivityCollector {
     }
 
     /**
+     * stop the special activity
+     *
+     * @param activityClass
+     */
+    public static void finshActivity(Class<?> activityClass) {
+
+        Activity finished = null;
+
+        for (Activity activity : activities) {
+
+            if(activityClass.equals(activity.getClass())) {
+
+                activity.finish();
+                finished = activity;
+                break;
+            }
+        }
+
+        if(finished != null)
+            removeActivity(finished);
+    }
+
+    /**
+     * stop activities instead of the special activity
+     *
+     * @param activityClass
+     */
+    public void finishOthers(Class<?> activityClass) {
+
+        List<Activity> delActivities = new ArrayList<Activity>();
+
+        for(Activity activity : activities) {
+
+            if(!activityClass.equals(activity.getClass())) {
+
+                activity.finish();
+                delActivities.add(activity);
+            }
+        }
+
+        activities.removeAll(delActivities);
+    }
+
+    /**
      * stop all activities, exit application
      */
     public static void finishAll() {
@@ -58,5 +102,15 @@ public class ActivityCollector {
         }
 
         activities.clear();
+    }
+
+    /**
+     * get size of current activities
+     *
+     * @return activity count
+     */
+    public static int size() {
+
+        return activities.size();
     }
 }
