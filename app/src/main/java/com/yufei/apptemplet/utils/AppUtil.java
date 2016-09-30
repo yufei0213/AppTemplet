@@ -1,11 +1,17 @@
 package com.yufei.apptemplet.utils;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
+import android.provider.Settings;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.view.Display;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -118,7 +124,7 @@ public class AppUtil {
     }
 
     /**
-     * get the height of screen
+     * get the height of screen widthout VirtualKey
      *
      * @param context
      * @return screenHeight
@@ -126,6 +132,47 @@ public class AppUtil {
     public static int getScreenHeight(Context context) {
 
         return context.getResources().getDisplayMetrics().heightPixels;
+    }
+
+    /**
+     * get the height of screen width VirtualKey
+     *
+     * @param context
+     * @return screenHeight
+     */
+    public static int getScreenHeightWidthVirtualKey(Context context) {
+
+        int height = 0;
+        Activity activity = (Activity) context;
+        Display display = activity.getWindowManager().getDefaultDisplay();
+        DisplayMetrics dm = new DisplayMetrics();
+
+        @SuppressWarnings("rawtypes")
+        Class c;
+        try {
+
+            c = Class.forName("android.view.Display");
+            @SuppressWarnings("unchecked")
+            Method method = c.getMethod("getRealMetrics", DisplayMetrics.class);
+            method.invoke(display, dm);
+            height = dm.heightPixels;
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+        return height;
+    }
+
+    /**
+     * get height of VirtualKey
+     *
+     * @param context
+     * @return height
+     */
+    public static int getVirtualKeyHeight(Context context) {
+
+        return getScreenHeightWidthVirtualKey(context) - getScreenHeight(context);
     }
 
     /**
@@ -267,5 +314,19 @@ public class AppUtil {
         }
 
         return result;
+    }
+
+    /**
+     * get the intent that allows you to open app setting page
+     *
+     * @param context
+     * @return intent
+     */
+    public static Intent getAppDetailSettingIntent(Context context) {
+
+        Uri packageURI = Uri.parse("package:" + context.getPackageName());
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, packageURI);
+
+        return intent;
     }
 }

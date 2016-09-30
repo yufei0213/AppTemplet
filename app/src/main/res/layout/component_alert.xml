@@ -61,12 +61,6 @@
                     android:textColor="@color/alert_btn"
                     android:textSize="16dp" />
 
-                <!--<View-->
-                    <!--android:layout_width="1dp"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_gravity="center_horizontal"-->
-                    <!--android:background="@color/alert_line" />-->
-
                 <Button
                     android:id="@+id/right_btn"
                     android:layout_width="0dp"

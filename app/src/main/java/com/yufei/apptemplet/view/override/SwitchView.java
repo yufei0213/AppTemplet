@@ -15,7 +15,7 @@ import android.view.View;
 /**
  * Created by wangyufei on 16/9/12.
  */
-public class SwitchView extends View{
+public class SwitchView extends View {
 
     private final Paint paint = new Paint();
     private final Path sPath = new Path();
@@ -72,13 +72,15 @@ public class SwitchView extends View{
         setLayerType(LAYER_TYPE_SOFTWARE, null);
     }
 
-    @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int heightSize = (int) (widthSize * 0.65f);
         setMeasuredDimension(widthSize, heightSize);
     }
 
-    @Override protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         mWidth = w;
         mHeight = h;
@@ -189,7 +191,8 @@ public class SwitchView extends View{
         return result - bOffLeftX;
     }
 
-    @Override protected void onDraw(Canvas canvas) {
+    @Override
+    protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         paint.setAntiAlias(true);
         final boolean isOn = (state == STATE_SWITCH_ON || state == STATE_SWITCH_ON2);
@@ -239,7 +242,8 @@ public class SwitchView extends View{
         if (sAnim > 0 || bAnim > 0) invalidate();
     }
 
-    @Override public boolean onTouchEvent(MotionEvent event) {
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
         if ((state == STATE_SWITCH_ON || state == STATE_SWITCH_OFF) && (sAnim * bAnim == 0)) {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
@@ -249,19 +253,19 @@ public class SwitchView extends View{
                     lastState = state;
                     if (state == STATE_SWITCH_OFF) {
                         refreshState(STATE_SWITCH_OFF2);
-                    }
-                    else if (state == STATE_SWITCH_ON) {
+                    } else if (state == STATE_SWITCH_ON) {
                         refreshState(STATE_SWITCH_ON2);
                     }
                     bAnim = 1;
                     invalidate();
-                    if (listener != null) {
-                        if (state == STATE_SWITCH_OFF2) {
+                    if (state == STATE_SWITCH_OFF2) {
+                        toggleSwitch(STATE_SWITCH_ON);
+                        if (listener != null)
                             listener.toggleToOn();
-                        }
-                        else if (state == STATE_SWITCH_ON2) {
+                    } else if (state == STATE_SWITCH_ON2) {
+                        toggleSwitch(STATE_SWITCH_OFF);
+                        if (listener != null)
                             listener.toggleToOff();
-                        }
                     }
                     break;
             }
@@ -276,7 +280,6 @@ public class SwitchView extends View{
     }
 
     /**
-     *
      * @return the state of switch view
      */
     public int getState() {
@@ -286,6 +289,7 @@ public class SwitchView extends View{
     /**
      * if set true , the state change to on;
      * if set false, the state change to off
+     *
      * @param isOn
      */
     public void setState(boolean isOn) {
@@ -297,12 +301,14 @@ public class SwitchView extends View{
      * if set true , the state change to on;
      * if set false, the state change to off
      * <br><b>change state with animation</b>
+     *
      * @param letItOn
      */
     public void toggleSwitch(boolean letItOn) {
         final int wich = letItOn ? STATE_SWITCH_ON : STATE_SWITCH_OFF;
         postDelayed(new Runnable() {
-            @Override public void run() {
+            @Override
+            public void run() {
                 toggleSwitch(wich);
             }
         }, 300);
@@ -327,12 +333,14 @@ public class SwitchView extends View{
 
     private OnStateChangedListener listener = new OnStateChangedListener() {
 
-        @Override public void toggleToOn() {
-            toggleSwitch(STATE_SWITCH_ON);
+        @Override
+        public void toggleToOn() {
+
         }
 
-        @Override public void toggleToOff() {
-            toggleSwitch(STATE_SWITCH_OFF);
+        @Override
+        public void toggleToOff() {
+
         }
     };
 
