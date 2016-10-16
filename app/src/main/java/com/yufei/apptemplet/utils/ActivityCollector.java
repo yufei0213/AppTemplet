@@ -74,7 +74,7 @@ public class ActivityCollector {
      *
      * @param activityClass
      */
-    public void finishOthers(Class<?> activityClass) {
+    public static void finishOthers(Class<?> activityClass) {
 
         List<Activity> delActivities = new ArrayList<Activity>();
 
